@@ -1,0 +1,27 @@
+[1mdiff --git a/variables.tf b/variables.tf[m
+[1mindex e69de29..03bcb7e 100644[m
+[1m--- a/variables.tf[m
+[1m+++ b/variables.tf[m
+[36m@@ -0,0 +1,21 @@[m
+[32m+[m[32mvariable "aws_region" {[m
+[32m+[m[32m  description = "AWS region where resources will be created"[m
+[32m+[m[32m  type        = string[m
+[32m+[m[32m  default     = "us-east-1"[m
+[32m+[m[32m}[m
+[32m+[m
+[32m+[m[32mvariable "environment" {[m
+[32m+[m[32m  description = "Environment name, for example dev or prod"[m
+[32m+[m[32m  type        = string[m
+[32m+[m[32m}[m
+[32m+[m
+[32m+[m[32mvariable "instance_type" {[m
+[32m+[m[32m  description = "EC2 instance type"[m
+[32m+[m[32m  type        = string[m
+[32m+[m[32m}[m
+[32m+[m
+[32m+[m[32mvariable "allowed_ssh_cidr" {[m
+[32m+[m[32m  description = "CIDR block allowed to connect with SSH"[m
+[32m+[m[32m  type        = string[m
+[32m+[m[32m  default     = "0.0.0.0/0"[m
+[32m+[m[32m}[m
+\ No newline at end of file[m
