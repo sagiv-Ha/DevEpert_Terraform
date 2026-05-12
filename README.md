@@ -925,19 +925,49 @@ Welcome to nginx!
 
 # 🧪 Evidence / Screenshots
 
-The project includes screenshots that document successful execution:
+The following screenshots document the full lifecycle of the Terraform deployment:
 
-| Screenshot | Description |
-|---|---|
-| `screenshots/create_env.png` | Shows successful apply, outputs, and SSH connection |
-| `screenshots/nginx_browser.png` | Shows nginx running in the browser |
-| `screenshots/destroy_dev.png` | Shows successful Terraform destroy |
+1. Creating the DEV environment
+2. Connecting to the EC2 instance using SSH
+3. Installing and testing nginx
+4. Destroying all AWS resources to avoid unnecessary costs
 
 ---
 
-# 🧹 Destroy DEV Environment
+## ✅ DEV Environment Created Successfully
 
-To avoid unnecessary AWS costs, destroy the environment after testing.
+This screenshot shows:
+
+- `terraform apply` completed successfully
+- 8 AWS resources were created
+- Terraform outputs were displayed
+- SSH connection to the EC2 instance worked successfully
+
+![DEV Environment Created](screenshots/create_env.png)
+
+---
+
+## 🌐 nginx Web Server Running
+
+After connecting to the EC2 instance using SSH, nginx was installed manually.
+
+The browser was then opened using the EC2 public IP address, and the default nginx page was displayed successfully.
+
+This proves that:
+
+- The EC2 instance is running
+- The Security Group allows HTTP traffic on port 80
+- The subnet has internet access
+- The route table and Internet Gateway are configured correctly
+- nginx is installed and working
+
+![nginx Browser Test](screenshots/nginx_browser.png)
+
+---
+
+## 🧹 DEV Environment Destroyed Successfully
+
+This screenshot shows that the DEV environment was destroyed using:
 
 ```powershell
 terraform destroy `
@@ -945,35 +975,25 @@ terraform destroy `
   -var-file="environments/dev.tfvars"
 ```
 
-When prompted:
-
-```text
-Do you really want to destroy all resources?
-```
-
-Type:
-
-```text
-yes
-```
-
-Expected result:
+The result confirms:
 
 ```text
 Destroy complete! Resources: 8 destroyed.
 ```
 
+It also shows that `terraform state list` was executed after the destroy command and no resources were returned, meaning the Terraform-managed infrastructure was successfully removed.
+
+![DEV Environment Destroyed](screenshots/destroy_dev.png)
+
 ---
 
-## Verify State Is Empty
+## 📸 Screenshot Summary
 
-```powershell
-terraform state list -state="dev.tfstate"
-```
-
-If no resources are displayed, Terraform no longer tracks any DEV resources.
-
-Also verify in AWS Console that there are no running EC2 instances.
+| Screenshot | Description |
+|---|---|
+| `screenshots/create_env.png` | Successful Terraform apply, outputs, and SSH connection |
+| `screenshots/nginx_browser.png` | nginx web page accessible from browser |
+| `screenshots/destroy_dev.png` | Successful Terraform destroy and cleanup verification |
 
 ---
 
