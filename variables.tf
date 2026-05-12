@@ -19,3 +19,8 @@ variable "allowed_ssh_cidr" {
   type        = string
   default     = "0.0.0.0/0"
 }
+
+variable "key_name" {
+  description = "AWS EC2 Key Pair name used for SSH access"
+  type        = string
+}
